@@ -111,7 +111,7 @@ if submit:
 
     with answer_col:
         st.markdown("#### Answer")
-        st.markdown(result.answer)
+        st.markdown(result.answer.replace("#", " "))
 
     with sources_col:
         st.markdown("#### Sources")
