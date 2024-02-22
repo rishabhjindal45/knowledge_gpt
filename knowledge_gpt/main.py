@@ -112,7 +112,7 @@ if submit:
     with answer_col:
         st.markdown("#### Answer")
         # st.markdown(result.answer)
-        st.markdown(result.answer.replace("_", " ")) 
+        st.markdown(st.text(result.answer)) 
         # st.text(result.answer)
 
     with sources_col:
