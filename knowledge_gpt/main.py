@@ -99,7 +99,7 @@ if submit:
         st.stop()
 
     # Output Columns
-    # answer_col, sources_col = st.columns(2)
+    answer_col, sources_col = st.columns(2)
 
     llm = get_llm(model=model, openai_api_key=openai_api_key, temperature=0)
     result = query_folder(
@@ -109,19 +109,13 @@ if submit:
         llm=llm,
     )
 
-    st.text(result.answer)
-    
-    for source in result.sources:
-        st.text(source.page_content)
-        st.text(source.metadata["source"])
+    with answer_col:
+        st.markdown("#### Answer")
+        st.markdown(result.answer)
 
-    # with answer_col:
-    #     st.markdown("#### Answer")
-    #     st.markdown(result.answer)
-
-    # with sources_col:
-    #     st.markdown("#### Sources")
-    #     for source in result.sources:
-    #         st.markdown(source.page_content)
-    #         st.markdown(source.metadata["source"])
-    #         st.markdown("---")
+    with sources_col:
+        st.markdown("#### Sources")
+        for source in result.sources:
+            st.markdown(source.page_content)
+            st.markdown(source.metadata["source"])
+            st.markdown("---")
